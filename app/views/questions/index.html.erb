@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to LaunchOverflow</title>
+</head>
+<body>
+You will be rescued, have faith !<br><br>
+	<%@questions.each do|ques|%>
+	  <br>
+	    <%= link_to "Question", question_path(ques) %>
+	    <%=ques.id%><br>
+		Title : <%=ques.title%><br>
+		Description : <%=ques.description%><br>
+    <%end%>
+
+</body>
+</html>

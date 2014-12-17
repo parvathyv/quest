@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Question Details</title>
+</head>
+<body>
+	
+
+  <% if flash.any? %>
+    <div class="flash">
+      <%= flash[:notice] %>
+    </div>
+  
+  <% end %>
+    <h1>Question</h1>
+		Title :   <%=@question.title%><br>
+		Description :  <%=@question.description%><br>
+    <br>
+     
+    
+    <h3>Answer the question</h3>	
+		 <%= form_for([@question, @answer]) do |f| %>
+
+           <% if @answer.errors.any? %>
+          <ul>
+            <% @answer.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
+
+          <%= f.text_area :description, size: "60x12" %><br>
+          	<%= f.submit "Answer" %>
+		<% end %>
+		
+    <br>
+
+    
+    <h3>Edit the question</h3>
+
+      <%= form_for @question,action: "update", html: {class: "nifty_form"} do |f| %>
+
+        <% if @question.errors.any? %>
+          <ul>
+            <% @question.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
+  			Title <%= f.text_field :title %><br>
+   			Description<br> 
+ 			  <%= f.text_area :description, size: "60x12" %><br>
+  			  Category <%= f.text_field :category %><br>
+			  <%= f.submit "Edit" %>
+        <% end %>
+      
+       <br>
+
+       <%= form_for @question, method:"delete", html: {class: "nifty_form"} do |f| %>
+        <%= f.submit "Delete" %>
+       <% end %>
+
+     
+
+      <br>
+      <h3>See all answers</h3>
+      <%@answers.each do|ans|%>
+         <%= link_to "#{ans.id}", edit_answer_path(ans) %>    Answer: <%=ans.description%><br>
+      <%end%>	
+     	
+
+		
+</body>
+</html>
