@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -58,12 +58,15 @@ Rails.application.routes.draw do
   # resources :questions
   root to: "questions#index"
 
-  resources :users
+  
   resources :answers
 
   resources :questions do
     resources :answers
   end
 
-  
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }, except: :destroy 
+  #devise_scope :user do
+   #get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  #end
 end
