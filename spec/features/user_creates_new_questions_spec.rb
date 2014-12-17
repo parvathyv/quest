@@ -21,11 +21,10 @@ require 'rails_helper'
     # Visit the page containing the new question form
     	visit '/questions/new'
 
-    # Fill in the input field with the 'Location' label
-    	fill_in "title", with: "here we gowhywhywhhywhhwyhwywhhwyhwyhwyhwhhywhwyhwhy"
-    	fill_in "description", with: "here we gowhywhywhhywhhwyhwywhhwyhwyhwyhwhhywhwyhwhy
-    	hhfghjgfhjdsgfhjgdshfgshdjgfhjdsgfjhsdgfjhgsdjhfgjhsdgfjhsgfjhsdgfjhsdgfjhgsdfjhgsdjfh\"
-    	fill_in "title", with: "here we gowhywhywhhywhhwyhwywhhwyhwyhwyhwhhywhwyhwhy"
+    # Fill in the input field with the 'title' label
+      fill_in "Title", with: "here we gowhywhywhhywhhwyhwywhhwyhwyhwyhwhhywhwyhwhy"
+    	fill_in "Description", with: "here we gowhywhywhhywhhwyhwywhhwyhwyhwhghdsgfhjgdfhgdshfgsdgfgdsfydsfygffydsfyfdfsdffsdhgfghdsfgdsfghdsfgdfsgfdsfgdsghfdgsfghdsfghdsfhgsdfghdsghfdfyhwhhywhwyhwhyhhfghjgfhjdsgfhjgdshfgshdjgfhjdsgfjhsdgfjhgsdjhfgjhsdgfjhsgfjhsdgfjhsdgfjhgsdfjhgsdjfh"
+    	fill_in "Category", with: "here we gowhywhywhhywhhwyhwywhhwyhwyhwyhwhhywhwyhwhy"
     	click_on "Create"
 
     	expect(page).to have_content "Question was successfully created"

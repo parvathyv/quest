@@ -44,5 +44,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'capybara'
   gem 'rspec-rails'
+  gem 'devise'
 end
 

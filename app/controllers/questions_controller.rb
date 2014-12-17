@@ -26,12 +26,10 @@ class QuestionsController < ApplicationController
   # POST /questions
   def create
     #@user = User.new(username: params[:name], email: params[:email])
-     
-    
-    @question= Question.new(title: params[:question][:title], description: params[:question][:description], category: params[:question][:category],user_id: 1)
+     @question= Question.new(title: params[:question][:title], description: params[:question][:description], category: params[:question][:category],user_id: 1)
 
     if @question.save
-      redirect_to @question, notice: 'Question was successfully created.'
+      redirect_to new_question_path, notice: 'Question was successfully created.'
     else
       render action: 'new'
     end

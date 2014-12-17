@@ -5,7 +5,16 @@
 </head>
 <body>
 <h1>Your SOS</h1>
+
 <%= form_for @question, action: "create", html: {class: "nifty_form"} do |f| %>
+<div>
+
+  <% if flash.any? %>
+    <div class="flash">
+      <%= flash[:notice] %>
+    </div>
+   <%end%> 
+ </div>  
 <% if @question.errors.any? %>
 <ul>
   <% @question.errors.full_messages.each do |msg| %>
@@ -13,9 +22,11 @@
   <% end %>
 </ul>
 <% end %>
-  <li>Title <%= f.text_field :title %></li><br>
-   Description<br> 
+   <%= f.label :title, "Title" %><br />
+  <li> <%= f.text_field :title %></li><br>
+    <%= f.label :description, "Description" %><br />
  <%= f.text_area :description, size: "60x12" %><br>
+  <%= f.label :category, "Category" %><br />
   <li>Category <%= f.text_field :category %></li><br>
 
 
