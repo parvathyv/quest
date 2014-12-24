@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Play</title>
+</head>
+<body>
+	
+  <%=link_to "Sign out", destroy_user_session_path, method: "DELETE"%> <br> 
+
+  <% if flash.any? %>
+    <div class="flash">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+  
+  <h1>Choose your path</h1>
+     
+
+  <div class="row">
+      <div class="large-12 columns">
+        <h3>Location</h3>
+        
+           <%=@location.address%><br>
+             
+    </div>
+  </div>
+
+ <%=link_to "Enter hunt information", new_location_hunt_path(@location)%>
+</body>
+</html>

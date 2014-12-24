@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to LaunchOverflow</title>
+</head>
+<body>
+<%=link_to "Sign out", destroy_user_session_path, method: "DELETE"%> <br> 
+You will be rescued, have faith !<br><br>
+	<%@locations.each do|ans|%>
+	  <br>
+	    <%= link_to "Ans", location_path(ans) %>
+	    <%=ans.id%><br>
+		
+		
+    <%end%>
+
+</body>
+</html>

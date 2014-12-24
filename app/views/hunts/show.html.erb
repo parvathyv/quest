@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hunt Details</title>
+</head>
+<body>
+	 <%=link_to "Sign out", destroy_user_session_path, method: "DELETE"%> <br> 
+
+  <% if flash.any? %>
+    <div class="flash">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+  
+  <h1>Choose your path</h1>
+     
+
+  <div class="row">
+      <div class="large-12 columns">
+        <h3>Hunt</h3>
+        
+           <%=@hunt.name%><br>
+             
+    </div>
+  </div>
+
+ <%=link_to "Enter quiz", new_hunt_quiz_path(@hunt)%>
+  <div class="row">
+      <div class="large-12 columns">
+        <h3>See all quizzes</h3>
+        
+          <%@hunt.quizzes.each do|quiz|%>
+              <p><%=quiz.question_no%>  <%=quiz.question%></p>
+
+          <%end%>
+          <% if (5 - @quizzes.last.question_no) != 0 %>
+                <p> You have <%= 5 - @quizzes.last.question_no%> questions left to complete <%=@hunt.name%> </p>
+                <%else%>
+                <p><%=@hunt.name%> Complete</p>
+                <p><%=link_to "Enter new hunt", new_location_path%></p>
+              <%end%>  
+          
+      </div>
+  </div>            
+      		
+</body>
+</html>

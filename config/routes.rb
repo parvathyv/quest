@@ -56,13 +56,19 @@ Rails.application.routes.draw do
   #   end
 
   # resources :questions
-  root to: "questions#index"
+  root to: "locations#index"
 
   
-  resources :answers
+  resources :locations
+  resources :hunts
 
-  resources :questions do
-    resources :answers
+  resources :locations do
+    resources :hunts
+  end
+  
+  
+  resources :hunts do
+    resources :quizzes
   end
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }, except: :destroy 

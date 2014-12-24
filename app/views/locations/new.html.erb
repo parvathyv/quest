@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enter your location</title>
+</head>
+<body>
+<h1>Create new Location</h1><br>
+ <div class="row">
+  <div class="large-12 columns">
+ <%=link_to "Sign out", destroy_user_session_path, method: "DELETE"%>
+ </div>
+ </div>  
+<%= form_for @location, action: "create", html: {class: "nifty_form"} do |f| %>
+  <div>
+    <% if flash.any? %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <%end%> 
+  </div> 
+  
+  <% if @location.errors.any? %>
+    <ul>
+      <% @location.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <%end%>
+   <div class="row">
+      <div class="large-12 columns">
+        <%= f.label :address %><br />
+        <p><%= f.text_field :address %></p><br>
+        
+        <%= f.submit "Create" %>
+        
+    </div>
+  </div>
+  
+<% end %>
+
+</body>
+</html>

@@ -9,3 +9,12 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
+#Rails.application.config.assets.precompile += %w( vendor/foundation.min.css )
+#Rails.application.config.assets.precompile += %w( vendor/app.css )
+Rails.application.config.assets.precompile += %w( vendor/modernizr.js )
+#Rails.application.config.assets.precompile += %w( vendor/jquery.js )
+
+#Rails.application.config.assets.precompile += %w( foundation.min.js )
+#Rails.application.config.assets.precompile += %w( googlemaps.js )
+#Rails.application.config.assets.precompile += %w( map.js )
+#Rails.application.config.assets.precompile += %w( app.js)
