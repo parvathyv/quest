@@ -1,6 +1,6 @@
 
 class HuntsController < ApplicationController
-
+  before_filter :user_signed_in?, :only => [:edit, :update, :destroy]
   # GET /hunts
   def index
     @hunts = Hunt.all
@@ -35,7 +35,7 @@ class HuntsController < ApplicationController
     if @hunt.save
       redirect_to hunt_path(@hunt), notice: 'Hunt was successfully created.'
     else
-         binding.pry
+       
       redirect_to new_location_hunt_path(@location), notice: 'Hunt was not created.'
     end
   end
@@ -69,5 +69,9 @@ class HuntsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def hunt_params
     params.require(:hunt).permit(:name, :category, :description, :user_id, :location_id)
+  end
+
+  def user_signed_in?
+    redirect_to root_path unless current_user
   end
 end

@@ -17,7 +17,7 @@ feature 'user adds a new user', %Q{
 
   scenario 'user adds a new restaurant' do
     
-    my_user = FactoryGirl.create(:user)
+    my_user = FactoryGirl.build(:user)
 
    
    
@@ -29,7 +29,7 @@ feature 'user adds a new user', %Q{
     fill_in 'Password confirmation', with: my_user.password
     click_on 'Sign Up'
 
-    expect(page).to have_content 'Successfully signed up'
+    expect(page).to have_content 'Welcome! You have signed up successfully'
    
   end
 

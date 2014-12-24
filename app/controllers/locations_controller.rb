@@ -1,23 +1,12 @@
 class LocationsController < ApplicationController
 
-  helpers do
-    def current_user
-      user_id = session[:user_id]
-      @current_user ||= User.find(user_id) if user_id.present?
-          
-    end
+  before_filter :user_signed_in?, :only => [:edit, :update, :destroy]
 
-    def signed_in?
-      current_user.present?
-    end
-   
-    def set_current_user(user)
-      session[:user_id] = user.id
-    end
-  end
   # GET /questions
   def index
     @locations = Location.order(id: :DESC)
+    
+    
   end
 
   # GET /questions/1
@@ -97,4 +86,6 @@ end
   def location_params
     params.require(:location).permit(:latitude, :longitude, :address)
   end
+
+  
 end

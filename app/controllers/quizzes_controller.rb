@@ -1,9 +1,15 @@
 
 class QuizzesController < ApplicationController
-
+  before_filter :user_signed_in?, :only => [:edit, :update, :destroy]
   # GET /quizzes
   def index
-    @quizzes = Quiz.all
+    @hunt = Hunt.find(params[:hunt_id])
+    @quizzes = @hunt.quizzes
+    @location_zoom = 8
+
+    @location_array = []
+    @quizzes.each{|obj| @location_array << [obj.latitude, obj.longitude]}
+    #binding.pry
   end
 
   # GET /quizzes/1
@@ -27,7 +33,7 @@ class QuizzesController < ApplicationController
     
     @quiz = @hunt.quizzes.build(quiz_params)
     @last_quiz = Quiz.where("hunt_id=?", @hunt.id)
-      binding.pry 
+      
     if @last_quiz == nil || @last_quiz.empty?
       @quiz.question_no = 1
     else  
@@ -38,13 +44,14 @@ class QuizzesController < ApplicationController
       
       if @quiz.question_no < 5
         redirect_to new_hunt_quiz_path(@hunt), notice: 'Question was successfully created.'
-      elsif
+      else
          redirect_to hunt_path(@hunt), notice: 'Quiz was successfully created.' 
-        elsif
-          redirect_to hunt_path(@hunt), notice: 'Quiz was not created.'
-        end  
-      end
-    end
+      end   
+    else
+        redirect_to hunt_path(@hunt), notice: 'Quiz was not created.'
+    end  
+      
+  end
 
   
   def destroy
@@ -78,5 +85,9 @@ class QuizzesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def quiz_params
     params.require(:quiz).permit(:hunt_id, :question, :question_no, :address, :latitude, :longitude)
+  end
+
+  def user_signed_in?
+    redirect_to root_path unless current_user
   end
 end

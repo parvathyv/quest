@@ -1,33 +1,12 @@
 <!DOCTYPE html>
+<html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page Title</title>
+  <title>All locations</title>
 </head>
-<style>
 
-.node circle {
-  fill: #fff;
-  stroke: steelblue;
-  stroke-width: 1.5px;
-}
 
-.node {
-  font: 10px sans-serif;
-}
-
-.link {
-  fill: none;
-  stroke: #ccc;
-  stroke-width: 1.5px;
-}
-
-</style>
 <body>
-
-  <nav class="top-bar-custom" data-topbar>
-    
-
-  </nav>
   <section class="hero">
         <div class="row">
           <div class="large-12 columns">
@@ -41,21 +20,13 @@
         <div class="row">
           <div class="large-6 columns about-box">
             <div class="black-box">
-              <% if user_signed_in? == false %>
-                  <p class="secondary large button"><%= link_to "Sign up", new_user_registration_path%></p><br> 
-                  <p class="secondary large button"><%= link_to "Sign in", new_user_session_path%></p> <br> 
-                  <p class="github large button"><%= link_to "Sign in with Github", user_omniauth_authorize_path(:github) %></p><br>
-              <%else%>
-                  <p class="secondary large button"><%= link_to "Sign out", destroy_user_session_path, method: "DELETE"%></p> 
-
-                <%end%> 
             
             </div>
           </div>
         </div>
       </section>
 
- <!--<div id="map_canvas" style="height:768px;width:1024px;"></div>-->
+     
 
 </body>
 </html>

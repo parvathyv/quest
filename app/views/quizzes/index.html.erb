@@ -4,15 +4,12 @@
   <title>Welcome to LaunchOverflow</title>
 </head>
 <body>
-<%link_to "Sign out", destroy_user_session_path, method: "DELETE"%> <br> 
-You will be rescued, have faith !<br><br>
-	<%@answers.each do|ans|%>
-	  <br>
-	    <%= link_to "Ans", answer_path(ans) %>
-	    <%=ans.id%><br>
-		
-		Description : <%=ans.description%><br>
-    <%end%>
-
+<%=link_to "Sign out", destroy_user_session_path, method: "DELETE"%> <br> 
+<script type="text/javascript">
+      var map_array = <%= @location_array.inspect %>
+      var my_zoom =  <%= @location_zoom %>
+     
+    </script>
+ <div id="map_canvas" style="height:768px;width:1024px;"></div>
 </body>
 </html>

@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All locations</title>
+</head>
+
+
+<body>
+  <section class="hero">
+        <div class="row">
+          <div class="large-12 columns">
+            <div class="main-wrapper">
+             
+          
+              
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-6 columns about-box">
+            <div class="black-box">
+              <% if user_signed_in? == false %>
+                  <p class="secondary large button"><%= link_to "Sign up", new_user_registration_path%></p><br> 
+                  <p class="secondary large button"><%= link_to "Sign in", new_user_session_path%></p> <br> 
+                  <p class="github large button"><%= link_to "Sign in with Github", user_omniauth_authorize_path(:github) %></p><br>
+              <%else%>
+                  <p class="secondary large button"><%= link_to "Sign out", destroy_user_session_path, method: "DELETE"%></p> 
+
+                <%end%> 
+             <p><%= link_to "See locations", locations_path%></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+     
+
+</body>
+</html>
