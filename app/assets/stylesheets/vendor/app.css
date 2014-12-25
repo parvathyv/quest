@@ -32,7 +32,21 @@ li {
 
     /* Add a bit more spacing between list items. */
     padding: 5px;
-    list-style-type: none
+    list-style-type: none;
+}
+
+.signinlabel{
+    color:white;
+    font-family:'Oswald';
+    font-size:1em;
+}
+
+
+.signintext{
+    color:#59aff0;
+    font-weight: bold;
+    font-family:'Poiret One';
+    font-size:16px;
 }
 
 #slideshow { 
@@ -87,6 +101,8 @@ solid;border-radius:8px;padding:10px 70px 0px 70px;margin:0;margin-top:10px;font
 height:45px;text-align: center;}
 .secondary.large.button:hover{background-color:rgba(0,0,255,0.25);color:blue;}
 
+
+
 .row .main-wrapper{color:#fff;background-color: transparent;}
 .github.large.button{background-color:transparent;color:#fff;border:1px #fff 
 solid;border-radius:8px;padding:10px 20px 0px 20px;margin:0;margin-top:10px;font-family: 'Poiret One';
@@ -104,6 +120,11 @@ background-color:transparent;}footer p,footer a{font-size:14px;}
 .hero{padding-bottom:50px;height:100%;
 background-image:url("../boston.png");
 background-size:cover;box-shadow:inset 0px 0px 0 2000px rgba(0,0,0,0.2);}
+
+.signin{padding-bottom:50px;height:100%;
+background-color:#071665;
+background-size:cover;box-shadow:inset 0px 0px 0 2000px rgba(0,0,0,0.2);}
+
 .hero-content{padding-top:40px;padding-bottom:40px;background-color:#EAEAEA;}
 .panel{margin:40px 0 40px 0;box-shadow:2px 2px 10px rgba(0,0,0,0.2);border:none;background-color:#EAEAEA;}
 .large-4 img{box-shadow:2px 2px 10px rgba(0,0,0,0.1);}.radius.right.button{color:#000;border:2px #000 solid;border-radius:5px;padding:15px 50px 15px 50px;margin:0;font-size:0.8125em;}@media only screen and (min-width: 64.063em) {.radius.right.button{color:#000;border:2px #000 solid;border-radius:5px;padding:15px 50px 15px 50px;margin-top:25px;font-size:0.8125em;}}@media only screen and (min-width: 40.063em) {.radius.right.button{color:#000;border:2px #000 solid;border-radius:5px;padding:15px 50px 15px 50px;margin-top:25px;font-size:0.8125em;}}

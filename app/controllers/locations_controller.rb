@@ -5,8 +5,6 @@ class LocationsController < ApplicationController
   # GET /questions
   def index
     @locations = Location.order(id: :DESC)
-    
-    
   end
 
   # GET /questions/1
@@ -15,12 +13,14 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
 
     
-    @hunt= Hunt.new
+    #@hunt= Hunt.new
     
     
-    @hunts = Hunt.where('location_id =?', params[:id]).order(updated_at: :desc)
+    @hunts = @location.hunts
    
-end
+    binding.pry
+   
+  end
 
   # GET /questions/new
   def new

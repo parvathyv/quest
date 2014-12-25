@@ -4,22 +4,7 @@
   <title>Question Details</title>
 </head>
 <body>
-	<%link_to "Sign out", destroy_user_session_path, method: "DELETE"%> <br> 
-
-		Answer:  <%=@answer.description%><br>
-        	<%= form_for @answer, method:"delete", html: {class: "nifty_form"} do |f| %>
-        	<%= f.submit "Delete" %>
-        <% end %>
-
-
-  
-        <%= form_for @answer, action: "edit", html: {class: "nifty_form"} do |f| %>
-          
-  			<%= f.text_area :description, size: "60x12" %><br>
-  			<%= f.submit "Edit" %>
-		<% end %>
-
-       
+	
 		
 </body>
 </html>
