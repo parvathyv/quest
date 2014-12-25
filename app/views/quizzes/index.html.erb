@@ -5,11 +5,7 @@
 </head>
 <body>
 <%=link_to "Sign out", destroy_user_session_path, method: "DELETE"%> <br> 
-<script type="text/javascript">
-      var map_array = <%= @location_array.inspect %>
-      var my_zoom =  <%= @location_zoom %>
-     
-    </script>
+
  <div id="map_canvas" style="height:768px;width:1024px;"></div>
 </body>
 </html>

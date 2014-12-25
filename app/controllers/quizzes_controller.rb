@@ -14,7 +14,11 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1
   def show
+
     @quiz = Quiz.find(params[:id])
+    @location_array = []
+    @location_array << [@quiz.latitude, @quiz.longitude]
+    @location_zoom = 12
   end
 
   # GET /quizzes/new
