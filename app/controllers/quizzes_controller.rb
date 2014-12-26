@@ -3,12 +3,14 @@ class QuizzesController < ApplicationController
   before_filter :user_signed_in?, :only => [:edit, :update, :destroy]
   # GET /quizzes
   def index
-    @hunt = Hunt.find(params[:hunt_id])
-    @quizzes = @hunt.quizzes
+     @lat = params[:lat]
+     binding.pry
+    #@hunt = Hunt.find(params[:hunt_id])
+    #@quizzes = @hunt.quizzes
     @location_zoom = 8
 
-    @location_array = []
-    @quizzes.each{|obj| @location_array << [obj.latitude, obj.longitude]}
+    #@location_array = []
+    #@quizzes.each{|obj| @location_array << [obj.latitude, obj.longitude]}
     #binding.pry
   end
 
@@ -61,6 +63,7 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1
   def show
+   
     @quiz = Quiz.find(params[:id])
     @location_array = []
     @location_array << [@quiz.latitude, @quiz.longitude]
@@ -83,7 +86,7 @@ class QuizzesController < ApplicationController
 
   # POST /quizzes
   def create
-    binding.pry
+
    
     @hunt = Hunt.find(params[:hunt_id])
     

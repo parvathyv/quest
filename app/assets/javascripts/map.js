@@ -11,16 +11,25 @@
 
  
   google.maps.event.addListener(map, 'click', function(e) {
+    
    
+
    
-    //document.getElementById('latlng1').value = e.latLng.lat() + ', ' + e.latLng.lng();
+
+     document.getElementById('answer').value = e.latLng.lat() + ', ' + e.latLng.lng();
+     placeMarker(e.latLng, map);
+      $.ajax({
+      url: '/quizzes',
+      method: 'get',
+      data: {
+        lat: e.latLng.lat(),
+        lng: e.latLng.lng()
+      }
+    });
 
     
-   
     
-    //location_array[i] = [e.latLng.lat(),e.latLng.lng()];
-    document.getElementById('answer').value = e.latLng.lat() + ', ' + e.latLng.lng();
-     placeMarker(e.latLng, map);
+
     
   });
 }
@@ -30,18 +39,7 @@ function placeMarker(position, map) {
     position: position,
     map: map
   });
-  //map.panTo(position);
-
-  //  var flightPath = new google.maps.Polyline({
-  //   path: flightPlanCoordinates,
-  //   geodesic: true,
-  //   strokeColor: '#FF0000',
-  //   strokeOpacity: 1.0,
-  //   strokeWeight: 2
-  // });
-
-  // flightPath.setMap(map);
-
+  
 }
 
 $(document).on('ready', function(){
