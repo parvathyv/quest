@@ -248,6 +248,7 @@ DEPENDENCIES
   jquery-turbolinks
   launchy
   mocha
+  nokogiri
   omniauth-github
   pg
   pry-rails

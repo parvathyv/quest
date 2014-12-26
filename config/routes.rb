@@ -67,6 +67,13 @@ Rails.application.routes.draw do
   resources :locations do
     resources :hunts
   end
+
+
+  resources :quizzes do
+    member do
+      get 'get_clue'
+    end
+  end
   
   
   resources :hunts do

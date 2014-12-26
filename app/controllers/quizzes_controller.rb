@@ -1,4 +1,4 @@
-
+require 'open-uri'
 class QuizzesController < ApplicationController
   before_filter :user_signed_in?, :only => [:edit, :update, :destroy]
   # GET /quizzes
@@ -12,14 +12,66 @@ class QuizzesController < ApplicationController
     #binding.pry
   end
 
+  def get_clue
+   
+   search_item = Quiz.find(params[:id]).address
+
+  
+  if search_item == '' ||  search_item == nil
+    search_parameter = "Yellowstone_National_Park"
+  else
+    search_item = search_item.split(',').first
+
+    search_item = search_item.split(' ').each { | word | word.capitalize! }.join(' ')
+       
+    if search_item.strip.size > 1 
+          search_item = search_item.split(' ').join('_')
+    end 
+    
+   
+    search_parameter = search_item
+  end 
+  
+ 
+ 
+  url = "http://en.wikipedia.org/wiki/#{search_parameter}"
+  doc = Nokogiri::HTML(open(url).read)
+  
+  characters = doc.css("#mw-content-text p")
+   binding.pry 
+  latitude = doc.css(".latitude").first.to_s
+  longitude= doc.css(".longitude").first.to_s
+  
+  paragraph = characters[1].to_s
+  
+  #paragraph1 = characters[1].to_s
+  #search_parameter = search_parameter.split('_').join(' ')
+  
+  #paragraph = paragraph.gsub(search_parameter, '---') 
+  #paragraph1 = paragraph1.gsub(search_parameter, '---')
+
+  #paragraph = paragraph.gsub(search_parameter.split(' ').first,'---') 
+  #paragraph1 = paragraph1.gsub(search_parameter.split(' ').first,'---')
+  #binding.pry
+  
+  @characters = "#{paragraph}"
+  
+  
+  end  
+
   # GET /quizzes/1
   def show
-
     @quiz = Quiz.find(params[:id])
     @location_array = []
     @location_array << [@quiz.latitude, @quiz.longitude]
     @location_zoom = 12
+    @characters = get_clue
+
   end
+
+  
+
+  
 
   # GET /quizzes/new
   def new
@@ -31,8 +83,8 @@ class QuizzesController < ApplicationController
 
   # POST /quizzes
   def create
-    
-
+    binding.pry
+   
     @hunt = Hunt.find(params[:hunt_id])
     
     @quiz = @hunt.quizzes.build(quiz_params)

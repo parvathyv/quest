@@ -29,20 +29,29 @@
           </script>
     
 
-            <div id="map_canvas" style="height:90%;width:100%"></div>
+            <div id="map_canvas" style="height:70%;width:100%"></div>
           
         
 
         <div class="row">
-          <div class="large-12 columns blue-box">
+          <div class="large-10 large-offset-1 columns blue-box">
             <li><%=@quiz.question%></li>
-              
-             
-          
           </div>
         </div>
+
+        <div class="row">
+          <div class="large-6 large-offset-3 columns blue-box">
+            <label>Answer
+              <input id ="answer" type="text" placeholder="whaddya think" />
+            </label>
+             <li><%= link_to "CLUE", quiz_path%></li>
+              <li><%=@characters.inspect%></li>
+          </div>
+        </div>
+       
+
       </section>
-    
+     
 	
 </body>
 </html>
