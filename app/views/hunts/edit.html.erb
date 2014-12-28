@@ -4,11 +4,10 @@
   <title>Edit your question</title>
 </head>
 <body>
-<%=link_to "Sign out", destroy_user_session_path, method: "DELETE"%> <br> 
-<%= form_for [@hunt, @quiz], url: {action: "update"}, html: {class: "nifty_form"} do |f| %>
+<%= form_for [@location, @hunt], url: {action: "update"}, html: {class: "nifty_form"} do |f| %>
  
    
- <%= f.text_field :question%><br>
+ <%= f.text_field :name%><br>
   
 
 

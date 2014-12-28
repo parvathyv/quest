@@ -7,38 +7,39 @@
 
   
 <body>
-  <section class="signin">
-       <div class="row">
-          <div class="large-12 columns">
-            <div class="main-wrapper">
-              <div class="button-group">  
-               <% if user_signed_in? != false %>
-                  <li class="secondary small button"><%= current_user.email%></li>  
+  
+  <script type="text/javascript">
+          var map_array = <%= @location_array.inspect %>
+          var my_zoom =  <%= @location_zoom %>
+          var flag = <%= @flag %>
+          var mapcenterlat = <%= @mapcenterlat %>
+          var mapcenterlong = <%= @mapcenterlong %>
 
-                  <li class="secondary small button"><%= link_to "Sign out", destroy_user_session_path, method: "DELETE"%></li> 
-                <%end%>
-              </div> 
-            </div>
-          </div>
-        </div>
+  </script>
 
-        <div class="row">
-          <div class="large-12 columns blue-box">
+
+  <div id="map_canvas" style="height:70%;width:100%"></div>   
+
+  <div class="row">
+    <div class="large-12 columns blue-box">
+
+  
+
+     
+      <h3>Choose your location</h3>
+       <%@locations.each do|loc|%>
+             
+              <li><%= link_to ">>", location_path(loc.id) %>
+               
            
-            <h3>Choose your location</h3>
-             <%@locations.each do|loc|%>
-                   
-                    <li><%= link_to ">>", location_path(loc.id) %>
-                     
-                 
-                  <%=loc.address%></li>
-                   
-                    
-              <%end%>
-          
-          </div>
-        </div>
-      </section>
+            <%=loc.address%></li>
+             
+              
+        <%end%>
+    
+    </div>
+  </div>
+     
 
      
 

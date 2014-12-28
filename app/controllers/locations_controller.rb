@@ -4,7 +4,17 @@ class LocationsController < ApplicationController
 
   # GET /questions
   def index
-    @locations = Location.order(id: :DESC)
+    @locations = Location.all
+    @location_array = []
+  
+    @locations.each do|loc|
+       @location_array << [loc.latitude, loc.longitude]
+    end
+
+    @location_zoom = 4
+    @flag = true
+    @mapcenterlat = 39.8282 
+    @mapcenterlong = -98.5795
   end
 
   # GET /questions/1

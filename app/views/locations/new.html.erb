@@ -4,39 +4,32 @@
   <title>Enter your location</title>
 </head>
 <body>
-<h1>Create new Location</h1><br>
- <div class="row">
-  <div class="large-12 columns">
- <%=link_to "Sign out", destroy_user_session_path, method: "DELETE"%>
- </div>
- </div>  
-<%= form_for @location, action: "create", html: {class: "nifty_form"} do |f| %>
-  <div>
-    <% if flash.any? %>
-      <div class="flash">
-        <%= flash[:notice] %>
-      </div>
-    <%end%> 
-  </div> 
-  
-  <% if @location.errors.any? %>
-    <ul>
-      <% @location.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
+
+<div class="row">
+ <div class="large-8 large-offset-2 columns blue-box">
+
+  <h3>New Location</h3><br>
+  <%= form_for @location, action: "create", html: {class: "nifty_form"} do |f| %>
+    <% if @location.errors.any? %>
+      <ul>
+          <% @location.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+      </ul>
   <%end%>
-   <div class="row">
-      <div class="large-12 columns">
-        <%= f.label :address %><br />
-        <p><%= f.text_field :address %></p><br>
-        
-        <%= f.submit "Create" %>
-        
+      
+  <li><%= f.label :address, "1", :class => "signinlabelforms" %></li>
+  <p><%= f.text_field :address, placeholder: "Address"%></p><br>
+  <div class="row">
+    <div class="large-4 large-offset-4 columns blue-box">       
+     <li><%= f.submit "Create", :class => "secondary large button"%></li>
     </div>
-  </div>
-  
-<% end %>
+  </div>   
+  <%end%> 
+  <%= link_to ">> View all", locations_path,:class => "secondary small button" %>
+ </div>
+
+</div> 
 
 </body>
 </html>

@@ -4,19 +4,16 @@
   <title>Enter your question</title>
 </head>
 <body>
-<%link_to "Sign out", destroy_user_session_path, method: "DELETE"%> <br> 
-<%= form_for @question, action: "update", html: {class: "nifty_form"} do |f| %>
- <% if @question.errors.any? %>
+<%= form_for @location, action: "update", html: {class: "nifty_form"} do |f| %>
+ <% if @location.errors.any? %>
           <ul>
-            <% @question.errors.full_messages.each do |msg| %>
+            <% @location.errors.full_messages.each do |msg| %>
               <li><%= msg %></li>
             <% end %>
           </ul>
         <% end %>
-  <li>Title <%= f.text_field :title %></li><br>
-   Description<br> 
- <%= f.text_area :description, size: "60x12" %><br>
-  <li>Category <%= f.text_field :category %></li><br>
+  <li>Title <%= f.text_field :address %></li><br>
+
 
 
   <%= f.submit "Update" %>

@@ -7,7 +7,7 @@ class QuizzesController < ApplicationController
      binding.pry
     #@hunt = Hunt.find(params[:hunt_id])
     #@quizzes = @hunt.quizzes
-    @location_zoom = 8
+    @location_zoom = 10
 
     #@location_array = []
     #@quizzes.each{|obj| @location_array << [obj.latitude, obj.longitude]}
@@ -56,7 +56,7 @@ class QuizzesController < ApplicationController
   #paragraph1 = paragraph1.gsub(search_parameter.split(' ').first,'---')
   #binding.pry
   
-  @characters = "#{paragraph}"
+  #@characters = "#{paragraph}"
   
   
   end  
@@ -64,11 +64,15 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1
   def show
    
+    @hunt = Hunt.find(params[:hunt_id])
     @quiz = Quiz.find(params[:id])
+   
     @location_array = []
     @location_array << [@quiz.latitude, @quiz.longitude]
+    @mapcenterlat = @quiz.latitude
+    @mapcenterlong = @quiz.longitude
     @location_zoom = 12
-    @characters = get_clue
+    #@characters = get_clue
 
   end
 

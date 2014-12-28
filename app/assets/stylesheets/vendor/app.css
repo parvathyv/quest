@@ -41,6 +41,21 @@ li {
     font-size:1em;
 }
 
+.signinlabelforms{
+    color:gray;
+    font-family:'Poiret One';
+    font-size:1em;
+    visibility:hidden;
+}
+
+.editdelete{
+    color:orange;
+    font-family:'Poiret One';
+    font-size:1em;
+    font-style:italic;
+   
+}
+
 
 .signintext{
     color:#59aff0;
