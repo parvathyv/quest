@@ -9,6 +9,9 @@ body {
 
 }
 
+
+
+
 h1 {
 
   font-family: Oswald;
@@ -138,6 +141,11 @@ background-size:cover;box-shadow:inset 0px 0px 0 2000px rgba(0,0,0,0.2);}
 
 .signin{padding-bottom:50px;height:100%;
 background-color:#071665;
+background-size:cover;box-shadow:inset 0px 0px 0 2000px rgba(0,0,0,0.2);}
+
+.homebkgnd{padding-bottom:50px;height:100%;
+background-color:#071665;
+background-image:url("../boston.png");
 background-size:cover;box-shadow:inset 0px 0px 0 2000px rgba(0,0,0,0.2);}
 
 .hero-content{padding-top:40px;padding-bottom:40px;background-color:#EAEAEA;}

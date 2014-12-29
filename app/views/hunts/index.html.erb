@@ -4,9 +4,16 @@
   <title>Welcome to LaunchOverflow</title>
 </head>
 <body>
-<%=link_to "Sign out", destroy_user_session_path, method: "DELETE"%> <br> 
-You will be rescued, have faith !<br><br>
-	<p><%=@location%></p>
+  <div class="row">
+    <div class="large-8 large-offset-2 columns blue-box"> 
+    <h3>All hunts</h3><br>
+		<%@hunts.each do|hunt|%>
+			
+			<li><%=link_to "#{hunt.name}", hunt_path(hunt)%></li>
+		<%end%>
+	</div>
+  </div>		
+
 
 </body>
 </html>

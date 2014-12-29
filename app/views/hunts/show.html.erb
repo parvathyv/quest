@@ -4,7 +4,7 @@
   <title>Hunt Details</title>
 </head>
 <body>
-	 <%=link_to "Sign out", destroy_user_session_path, method: "DELETE"%> <br> 
+	
 
   <% if flash.any? %>
     <div class="flash">
@@ -12,37 +12,34 @@
     </div>
   <% end %>
   
-  <h1>Choose your path</h1>
-     
-
   <div class="row">
-      <div class="large-12 columns">
-        <h3>Hunt</h3>
-        
-           <%=@hunt.name%><br>
-           <p><%=link_to ">> Edit", edit_location_hunt_path%></p>
-             
-    </div>
-  </div>
-
- <%=link_to "Enter quiz", new_hunt_quiz_path(@hunt)%>
-  <div class="row">
-      <div class="large-12 columns">
-        <h3>See all quizzes</h3>
+      <div class="large-12 columns blue-box">
+      <h3>Hunt</h3>
+          <li><%=@hunt.name%></li><br>
+          
+          <h3>Your itenirary</h3>
         
           <%@hunt.quizzes.each do|quiz|%>
-              <p><%=quiz.question_no%>  <%=quiz.question%></p>
-
+              <li><%=quiz.question_no%>.  <%=quiz.question.capitalize%></li>
           <%end%>
-          <% if (5 - @quizzes.last.question_no) != 0 %>
-                <p> You have <%= 5 - @quizzes.last.question_no%> questions left to complete <%=@hunt.name%> </p>
+          <br>
+          <% if (5 - @quizzes.maximum(:question_no)) != 0 %>
+                <li> You have <%= 5 - @quizzes.maximum(:question_no)%> questions left to complete <%=@hunt.name%> </li>
+                 <li><%=link_to "Enter a question", new_hunt_quiz_path(@hunt)%></li>
+                <br>
                 <%else%>
-                <p><%=@hunt.name%> Complete</p>
-                <p><%=link_to "Enter new hunt", new_location_path%></p>
-              <%end%>  
-          
-      </div>
-  </div>            
-      		
+
+                <li><%=@hunt.name%> Complete</li><br>
+                  <li>Where to next ?</li>
+                <li><%=link_to "New hunt", new_location_path%></li>
+          <%end%>
+
+         
+    
+          <li><%=link_to "Edit hunt", edit_hunt_path%></li> 
+           <li><%=link_to "All hunts", hunts_path%></li>              
+    </div>
+  </div> 
+
 </body>
 </html>

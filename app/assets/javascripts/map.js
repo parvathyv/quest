@@ -127,15 +127,19 @@
 
   var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
   
+  var icon = 'http://localhost:3000/assets/search.png';
+
   map.mapTypes.set('map_style', styledMap);
   map.setMapTypeId('map_style');
 
-  
+  if (flag === 1) {
    for (var i = 0; i < map_array.length; i++){ 
       var location = new google.maps.LatLng(map_array[i][0], map_array[i][1]);
       var marker = new google.maps.Marker({
-      position: location,
-      map: map
+        position: location,
+        map: map,
+        icon: icon
+
       });
        
   
@@ -160,8 +164,13 @@
   }
 
 
-
-
+function placeMarker(position, map) {
+  var marker = new google.maps.Marker({
+    position: position,
+    map: map
+  });
+  
+}
 
  
   google.maps.event.addListener(map, 'click', function(e) {
@@ -188,12 +197,7 @@
   });
 }
 
-function placeMarker(position, map) {
-  var marker = new google.maps.Marker({
-    position: position,
-    map: map
-  });
-  
+
 }
 
 $(document).on('ready', function(){

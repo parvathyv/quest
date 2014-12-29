@@ -12,7 +12,7 @@ FactoryGirl.define do
 
  factory :hunt do
     sequence(:name) { |n| "#{n}nnn"}
-    description "Discover wetness on a foggy day"
+    description "Discover SanFran on a foggy day"
     #association :user, factory: :user
     association :user, factory: :user
     association :location, factory: :location

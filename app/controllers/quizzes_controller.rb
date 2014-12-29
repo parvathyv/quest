@@ -40,23 +40,21 @@ class QuizzesController < ApplicationController
   doc = Nokogiri::HTML(open(url).read)
   
   characters = doc.css("#mw-content-text p")
-   binding.pry 
+  binding.pry 
   latitude = doc.css(".latitude").first.to_s
   longitude= doc.css(".longitude").first.to_s
   
   paragraph = characters[1].to_s
   
-  #paragraph1 = characters[1].to_s
-  #search_parameter = search_parameter.split('_').join(' ')
   
-  #paragraph = paragraph.gsub(search_parameter, '---') 
-  #paragraph1 = paragraph1.gsub(search_parameter, '---')
+  search_parameter = search_parameter.split('_').join(' ')
+  
+  paragraph = paragraph.gsub(search_parameter, '---') 
+  
 
-  #paragraph = paragraph.gsub(search_parameter.split(' ').first,'---') 
-  #paragraph1 = paragraph1.gsub(search_parameter.split(' ').first,'---')
-  #binding.pry
-  
-  #@characters = "#{paragraph}"
+  paragraph = paragraph.gsub(search_parameter.split(' ').first,'---')
+  paragraph = paragraph.split('.').first 
+ 
   
   
   end  
@@ -72,8 +70,9 @@ class QuizzesController < ApplicationController
     @mapcenterlat = @quiz.latitude
     @mapcenterlong = @quiz.longitude
     @location_zoom = 12
-    #@characters = get_clue
-
+    @flag = 2
+    @characters = get_clue.html_safe
+    binding.pry
   end
 
   

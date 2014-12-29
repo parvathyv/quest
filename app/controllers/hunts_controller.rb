@@ -11,7 +11,7 @@ class HuntsController < ApplicationController
   def show
     @hunt = Hunt.find(params[:id])
     @quiz = Quiz.new
-    @quizzes = Quiz.all
+    @quizzes = @hunt.quizzes.order(question_no: :desc)
   end
 
   # GET /hunts/new

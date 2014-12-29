@@ -12,7 +12,8 @@ class LocationsController < ApplicationController
     end
 
     @location_zoom = 4
-    @flag = true
+    binding.pry
+    @flag = 1
     @mapcenterlat = 39.8282 
     @mapcenterlong = -98.5795
   end
