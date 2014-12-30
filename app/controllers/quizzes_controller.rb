@@ -3,20 +3,20 @@ class QuizzesController < ApplicationController
   before_filter :user_signed_in?, :only => [:edit, :update, :destroy]
   # GET /quizzes
   def index
-     @lat = params[:lat]
-     binding.pry
-    #@hunt = Hunt.find(params[:hunt_id])
-    #@quizzes = @hunt.quizzes
-    @location_zoom = 10
+    @lat = params[:lat]
+    binding.pry
+   #@hunt = Hunt.find(params[:hunt_id])
+   #@quizzes = @hunt.quizzes
+   @location_zoom = 10
 
     #@location_array = []
     #@quizzes.each{|obj| @location_array << [obj.latitude, obj.longitude]}
     #binding.pry
   end
 
-  def get_clue
+  def get_clue(clue)
    
-   search_item = Quiz.find(params[:id]).address
+  search_item = clue
 
   
   if search_item == '' ||  search_item == nil
@@ -61,18 +61,32 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1
   def show
-   
     @hunt = Hunt.find(params[:hunt_id])
     @quiz = Quiz.find(params[:id])
-   
     @location_array = []
     @location_array << [@quiz.latitude, @quiz.longitude]
     @mapcenterlat = @quiz.latitude
     @mapcenterlong = @quiz.longitude
+    @question = @quiz.question
+    clue = @quiz.address
+    if params[:address] != nil
+      if params[:address][:address] == @quiz.address
+       
+        ques = @quiz.question_no + 1
+        @quiz = @hunt.quizzes.where("question_no=?", ques)
+        @question = @quiz.first.question
+        @location_array << [@quiz.first.latitude, @quiz.first.longitude]
+        clue = @quiz.first.address
+        #@mapcenterlat = @quiz.first.latitude
+        #@mapcenterlong = @quiz.first.longitude 
+       
+      end  
+    end   
     @location_zoom = 12
     @flag = 2
-    @characters = get_clue.html_safe
-    binding.pry
+    @characters = get_clue(clue).html_safe
+    render :'show'
+    
   end
 
   
@@ -136,11 +150,7 @@ class QuizzesController < ApplicationController
     redirect_to @hunt, notice: 'Quiz was successfully updated'
   end 
 
-  def make_best_answer
-    @quiz = Quiz.find(params[:id])
-    @quiz.rating = true
-  end
-
+ 
 
   #private
 

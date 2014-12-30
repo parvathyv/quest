@@ -118,9 +118,6 @@ padding:5px 5px 5px 5px;margin:0;}
 solid;border-radius:8px;padding:10px 70px 0px 70px;margin:0;margin-top:10px;font-family: 'Poiret One';
 height:45px;text-align: center;}
 .secondary.large.button:hover{background-color:rgba(0,0,255,0.25);color:blue;}
-
-
-
 .row .main-wrapper{color:#fff;background-color: transparent;}
 .github.large.button{background-color:transparent;color:#fff;border:1px #fff 
 solid;border-radius:8px;padding:10px 20px 0px 20px;margin:0;margin-top:10px;font-family: 'Poiret One';
@@ -142,6 +139,10 @@ background-size:cover;box-shadow:inset 0px 0px 0 2000px rgba(0,0,0,0.2);}
 .signin{padding-bottom:50px;height:100%;
 background-color:#071665;
 background-size:cover;box-shadow:inset 0px 0px 0 2000px rgba(0,0,0,0.2);}
+
+.signinwhite{padding-bottom:50px;height:35%;
+background-color:#FFFFFF;
+background-size:cover;}
 
 .homebkgnd{padding-bottom:50px;height:100%;
 background-color:#071665;

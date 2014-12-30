@@ -1,6 +1,3 @@
-
-
- 
  function initialize() {
 
   
@@ -175,10 +172,6 @@ function placeMarker(position, map) {
  
   google.maps.event.addListener(map, 'click', function(e) {
     
-   
-
-   
-
      document.getElementById('answer').value = e.latLng.lat() + ', ' + e.latLng.lng();
      placeMarker(e.latLng, map);
       $.ajax({
@@ -190,10 +183,6 @@ function placeMarker(position, map) {
       }
     });
 
-    
-    
-
-    
   });
 }
 

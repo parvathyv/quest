@@ -16,8 +16,6 @@ class HuntsController < ApplicationController
 
   # GET /hunts/new
   def new
- 
-
     @hunt = Hunt.new
     @location = Location.find(params[:location_id])
    

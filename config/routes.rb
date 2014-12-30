@@ -61,18 +61,11 @@ Rails.application.routes.draw do
   root to: "homepages#index"
 
   
-  resources :locations
+  resources :locations, only: [:create, :index, :show, :new]
   resources :hunts
 
   resources :locations do
     resources :hunts
-  end
-
-
-  resources :quizzes do
-    member do
-      get 'get_clue'
-    end
   end
   
   

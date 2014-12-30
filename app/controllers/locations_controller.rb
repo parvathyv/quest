@@ -12,7 +12,7 @@ class LocationsController < ApplicationController
     end
 
     @location_zoom = 4
-    binding.pry
+ 
     @flag = 1
     @mapcenterlat = 39.8282 
     @mapcenterlong = -98.5795
@@ -22,14 +22,8 @@ class LocationsController < ApplicationController
   def show
  
     @location = Location.find(params[:id])
-
-    
     #@hunt= Hunt.new
-    
-    
     @hunts = @location.hunts
-   
-    binding.pry
    
   end
 
