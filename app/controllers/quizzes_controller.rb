@@ -40,7 +40,7 @@ class QuizzesController < ApplicationController
   doc = Nokogiri::HTML(open(url).read)
   
   characters = doc.css("#mw-content-text p")
-  binding.pry 
+
   latitude = doc.css(".latitude").first.to_s
   longitude= doc.css(".longitude").first.to_s
   
@@ -69,23 +69,15 @@ class QuizzesController < ApplicationController
     @mapcenterlong = @quiz.longitude
     @question = @quiz.question
     clue = @quiz.address
-    if params[:address] != nil
-      if params[:address][:address] == @quiz.address
-       
-        ques = @quiz.question_no + 1
-        @quiz = @hunt.quizzes.where("question_no=?", ques)
-        @question = @quiz.first.question
-        @location_array << [@quiz.first.latitude, @quiz.first.longitude]
-        clue = @quiz.first.address
-        #@mapcenterlat = @quiz.first.latitude
-        #@mapcenterlong = @quiz.first.longitude 
-       
-      end  
-    end   
+    @ques = @quiz.question_no
+  
+    
     @location_zoom = 12
     @flag = 2
+    
+ 
     @characters = get_clue(clue).html_safe
-    render :'show'
+    binding.pry 
     
   end
 

@@ -5,4 +5,8 @@ class Quiz < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
 
+  def next
+    hunt.quizzes.where("id > ?", id).order("id ASC").first
+  end
+
 end
