@@ -24,9 +24,16 @@
   </div>
   
   <div class="row">
-    <div class="large-6 large-offset-3 columns blue-box">
+    <div class="large-8 large-offset-2 columns blue-box">
+    <%= form_tag(hunt_quiz_path, :method => :get ) do%>
+        <%= label :address, "Address" %>
+        <%= text_field :address, :address %>
+
+
+        <%= submit_tag("Answer") %>
+     <% end %>
     
-    <li><%= link_to 'next', hunt_quiz_path(@hunt, @quiz.next) %></li>
+    <li><%= link_to 'next', hunt_quiz_path(@hunt, @quiz.next) if @flm == 1 %></li>
    
    </div>
     </div>

@@ -11,6 +11,7 @@
           <div class="large-12 columns blue-box">
            
             <h3>Choose your hunt</h3>
+
               <%@hunts.each do|hunt|%>
                 <li><%= link_to ">>", hunt_quiz_path(hunt, hunt.quizzes.first) %>
                 <%=hunt.name%></li>
@@ -19,7 +20,8 @@
                 <li><%=link_to "Delete", location_hunt_path(@location, hunt), method:"delete", :class => "editdelete"%>
                 </li>
               <%end%>
-          
+            <h3> Create your hunt </h3>
+                 <li><%= link_to ">>", new_location_hunt_path(@location) %></li>
           </div>
         </div>
      

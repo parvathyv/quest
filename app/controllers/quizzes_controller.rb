@@ -18,34 +18,32 @@ class QuizzesController < ApplicationController
    
   search_item = clue
 
-  
-  if search_item == '' ||  search_item == nil
-    search_parameter = "Yellowstone_National_Park"
-  else
-    search_item = search_item.split(',').first
-
-    search_item = search_item.split(' ').each { | word | word.capitalize! }.join(' ')
-       
-    if search_item.strip.size > 1 
-          search_item = search_item.split(' ').join('_')
-    end 
-    
-   
-    search_parameter = search_item
+  search_item = search_item.split(' ').each { | word | word.capitalize! }.join(' ')
+     
+  if search_item.strip.size > 1 
+        search_item = search_item.split(' ').join('_')
   end 
-  
- 
- 
+
+
+  search_parameter = search_item
+
   url = "http://en.wikipedia.org/wiki/#{search_parameter}"
+ 
   doc = Nokogiri::HTML(open(url).read)
   
-  characters = doc.css("#mw-content-text p")
+  characters = doc.css("#mw-content-text p") 
+
 
   latitude = doc.css(".latitude").first.to_s
   longitude= doc.css(".longitude").first.to_s
   
-  paragraph = characters[1].to_s
-  
+
+  if characters[1].to_s.length > 100
+    paragraph = characters[1].to_s 
+  else
+     paragraph = characters[0].to_s 
+  end   
+ 
   
   search_parameter = search_parameter.split('_').join(' ')
   
@@ -68,16 +66,33 @@ class QuizzesController < ApplicationController
     @mapcenterlat = @quiz.latitude
     @mapcenterlong = @quiz.longitude
     @question = @quiz.question
-    clue = @quiz.address
+    clue = @quiz.address.split(', ').first
+     binding.pry
     @ques = @quiz.question_no
-  
+    @flm = 0
+     if params[:address] != nil
+      if params[:address][:address] == @quiz.address
+       
+       
+       @flm = 1
+      else
+      
+       @flm = 0
+      end  
+    end   
+
+
+
+
+
+
     
     @location_zoom = 12
     @flag = 2
     
  
     @characters = get_clue(clue).html_safe
-    binding.pry 
+
     
   end
 

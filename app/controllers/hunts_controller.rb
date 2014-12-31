@@ -18,7 +18,7 @@ class HuntsController < ApplicationController
   def new
     @hunt = Hunt.new
     @location = Location.find(params[:location_id])
-   
+    
   end
 
   # POST /hunts
@@ -29,9 +29,9 @@ class HuntsController < ApplicationController
     @hunt = @location.hunts.build(hunt_params)
  
     @hunt.user = current_user
-
+    binding.pry
     if @hunt.save
-      redirect_to hunt_path(@hunt), notice: 'Hunt was successfully created.'
+      redirect_to new_hunt_quiz_path(@hunt), notice: 'Hunt was successfully created.'
     else
        
       redirect_to new_location_hunt_path(@location), notice: 'Hunt was not created.'
