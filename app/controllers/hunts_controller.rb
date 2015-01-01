@@ -16,6 +16,7 @@ class HuntsController < ApplicationController
 
   # GET /hunts/new
   def new
+    binding.pry
     @hunt = Hunt.new
     @location = Location.find(params[:location_id])
     
@@ -29,7 +30,7 @@ class HuntsController < ApplicationController
     @hunt = @location.hunts.build(hunt_params)
  
     @hunt.user = current_user
-    binding.pry
+   
     if @hunt.save
       redirect_to new_hunt_quiz_path(@hunt), notice: 'Hunt was successfully created.'
     else
@@ -41,7 +42,9 @@ class HuntsController < ApplicationController
   
   def destroy
     @hunt = Hunt.find(params[:id]).destroy
-    redirect_to @hunt, notice: 'Hunt was successfully deleted'
+    @quiz = @hunt.quizzes.destroy
+    binding.pry
+    redirect_to hunts_path, notice: 'Hunt was successfully deleted'
   end  
 
   

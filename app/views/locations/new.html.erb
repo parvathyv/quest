@@ -17,9 +17,12 @@
           <% end %>
       </ul>
   <%end%>
-      
+  <h3> Choose from existing </h3>
+  <%= f.collection_select :id, @locations, :id, :address, selected: @locations.first.id %>
+
+  <h3>Provide a new one </h3> 
   <li><%= f.label :address, "1", :class => "signinlabelforms" %></li>
-  <p><%= f.text_field :address, placeholder: "Address"%></p><br>
+  <p><%= f.text_field :address, placeholder: "Address"%></p>
   <div class="row">
     <div class="large-4 large-offset-4 columns blue-box">       
      <li><%= f.submit "Create", :class => "secondary large button"%></li>

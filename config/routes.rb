@@ -72,6 +72,8 @@ Rails.application.routes.draw do
   resources :hunts do
     resources :quizzes
   end
+  
+  
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }, except: :destroy 
   #devise_scope :user do

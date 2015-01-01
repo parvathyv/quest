@@ -30,22 +30,30 @@ class LocationsController < ApplicationController
   # GET /questions/new
   def new
     @location = Location.new
-    #@hunt= Hunt.new
+    @locations = Location.all
+
   end
 
+  def redirect_new_hunt
+      binding.pry
+     redirect_to new_location_hunt_path(params[:location][:id])
+  end  
   # POST /questions
   def create
-   
-   
-    @location= Location.new(location_params)
-  
-   # @location.user = current_user
+   binding.pry
+    if params[:location][:id] == nil
+      @location= Location.new(location_params)
     
-    if @location.save
-      redirect_to @location, notice: 'Location was successfully created.'
+      @locations = Location.all
+      
+      if @location.save
+        redirect_to @location, notice: 'Location was successfully created.'
+      else
+        render action: 'new'
+      end
     else
-      render action: 'new'
-    end
+      redirect_new_hunt
+    end  
   end
   
 
