@@ -26,7 +26,6 @@ class QuizzesController < ApplicationController
       end  
     end   
     
-    @characters = @quiz.get_clue.html_safe
   
   end
 

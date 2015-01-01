@@ -16,7 +16,7 @@
   <div id="map_canvas" style="height:70%;width:100%"></div>
   <% if @flm == 0 %>   
     <div class="row">
-      <div class="large-10 large-offset-1 columns blue-box">
+      <div class="large-8 large-offset-2 columns blue-box">
      
       <h3>Experience <%=@hunt.name%></h3>
         <li>Q <%=@quiz.question_no%>.  <%=@quiz.question%></li>
@@ -31,15 +31,20 @@
 
 
           <%= submit_tag("Answer") %>
+
+   </div>
+    </div>
        <% end %>
+
         <section class="signinwhite">
       <div class="row">
     <div class="large-6 large-offset-3 columns blue-box">
         <li><%= link_to "CLUE", hunt_quiz_path%></li>
        
        
-
-        <li style="color:black"><%=@quiz.get_clue.html_safe%></li>
+        <%@quiz.get_clue.each do|clue|%>
+          <li style="color:black"><%=clue.html_safe%></li>
+        <%end%>  
       </div>
    </div>
   
@@ -52,9 +57,7 @@
     </div>
      </div>
     <%end%>
-   
-   </div>
-    </div>
+
 
 
     
