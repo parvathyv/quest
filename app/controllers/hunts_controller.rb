@@ -52,11 +52,15 @@ class HuntsController < ApplicationController
   end
 
   def update
-    binding.pry
-    @location = Location.find(params[:location_id])
-    #@hunt = Hunt.update(hunt_params)
-    @hunt = @location.hunt.update(hunt_params)
-    redirect_to @location, notice: 'Hunt was successfully updated'
+    @hunt = Hunt.find(params[:id])
+  
+    @hunt.update(hunt_params)
+  
+    if @hunt.save
+      redirect_to @hunt, notice: 'Hunt was successfully updated.'
+    else
+      render action: 'edit'
+    end
   end 
 
  

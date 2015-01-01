@@ -28,10 +28,6 @@ class Quiz < ActiveRecord::Base
 	  doc = Nokogiri::HTML(open(url).read)
 	  
 	  characters = doc.css("#mw-content-text p") 
-
-
-	  latitude = doc.css(".latitude").first.to_s
-	  longitude= doc.css(".longitude").first.to_s
 	  
     
 	  if characters[1].to_s.length > 100
