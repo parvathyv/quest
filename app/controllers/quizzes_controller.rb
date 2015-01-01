@@ -4,103 +4,37 @@ class QuizzesController < ApplicationController
   # GET /quizzes
   def index
     @lat = params[:lat]
-    binding.pry
-   #@hunt = Hunt.find(params[:hunt_id])
-   #@quizzes = @hunt.quizzes
-   @location_zoom = 10
+   
+    @location_zoom = 10
 
-    #@location_array = []
-    #@quizzes.each{|obj| @location_array << [obj.latitude, obj.longitude]}
-    #binding.pry
+   
   end
 
-  def get_clue(clue)
-   
-  search_item = clue
-
-  search_item = search_item.split(' ').each { | word | word.capitalize! }.join(' ')
-     
-  if search_item.strip.size > 1 
-        search_item = search_item.split(' ').join('_')
-  end 
-
-
-  search_parameter = search_item
-
-  url = "http://en.wikipedia.org/wiki/#{search_parameter}"
- 
-  doc = Nokogiri::HTML(open(url).read)
   
-  characters = doc.css("#mw-content-text p") 
-
-
-  latitude = doc.css(".latitude").first.to_s
-  longitude= doc.css(".longitude").first.to_s
-  
-
-  if characters[1].to_s.length > 100
-    paragraph = characters[1].to_s 
-  else
-     paragraph = characters[0].to_s 
-  end   
- 
-  
-  search_parameter = search_parameter.split('_').join(' ')
-  
-  paragraph = paragraph.gsub(search_parameter, '---') 
-  
-
-  paragraph = paragraph.gsub(search_parameter.split(' ').first,'---')
-  paragraph = paragraph.split('.').first 
- 
-  
-  
-  end  
 
   # GET /quizzes/1
   def show
     @hunt = Hunt.find(params[:hunt_id])
     @quiz = Quiz.find(params[:id])
-    @location_array = []
-    @location_array << [@quiz.latitude, @quiz.longitude]
-    @mapcenterlat = @quiz.latitude
-    @mapcenterlong = @quiz.longitude
-    @question = @quiz.question
-    clue = @quiz.address.split(', ').first
-     binding.pry
-    @ques = @quiz.question_no
+    
     @flm = 0
-     if params[:address] != nil
+    if params[:address] != nil
       if params[:address][:address] == @quiz.address
-       
-       
        @flm = 1
       else
-      
-       @flm = 0
+      @flm = 0
       end  
     end   
-
-
-
-
-
-
     
-    @location_zoom = 12
-    @flag = 2
-    
- 
-    @characters = get_clue(clue).html_safe
-
-    
+    @characters = @quiz.get_clue.html_safe
+  
   end
 
   
 
   
 
-  # GET /quizzes/new
+  # GET /quizzes/ne
   def new
    
     @quiz = Quiz.new
@@ -126,9 +60,9 @@ class QuizzesController < ApplicationController
     if @quiz.save
       
       if @quiz.question_no < 5
-        redirect_to new_hunt_quiz_path(@hunt), notice: 'Question was successfully created.'
+        redirect_to new_hunt_quiz_path(@hunt), notice: 'Quiz was successfully created.'
       else
-         redirect_to hunt_path(@hunt), notice: 'Quiz was successfully created.' 
+        redirect_to hunt_path(@hunt), notice: 'Quiz was successfully created.' 
       end   
     else
         redirect_to hunt_path(@hunt), notice: 'Quiz was not created.'

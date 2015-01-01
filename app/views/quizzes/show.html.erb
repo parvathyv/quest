@@ -5,52 +5,59 @@
 </head>
 <body>
   <script type="text/javascript">
-      var map_array = <%= @location_array.inspect %>
-      var my_zoom =  <%= @location_zoom %>
-      var mapcenterlat = <%= @mapcenterlat %>
-      var mapcenterlong = <%= @mapcenterlong %>
-      var flag = <%= @flag %>
+      var map_array = <%= [@quiz.latitude, @quiz.longitude] %>
+      var my_zoom =  <%= 12 %>
+      var mapcenterlat = <%= @quiz.latitude %>
+      var mapcenterlong = <%= @quiz.longitude %>
+      var flag = <%= 2 %>
   </script>
 
 
   <div id="map_canvas" style="height:70%;width:100%"></div>
-   
-  <div class="row">
-    <div class="large-10 large-offset-1 columns blue-box">
-    
-    <h3>Experience <%=@hunt.name%></h3>
-      <li>Q <%=@ques%>.  <%=@question%></li>
+  <% if @flm == 0 %>   
+    <div class="row">
+      <div class="large-10 large-offset-1 columns blue-box">
+     
+      <h3>Experience <%=@hunt.name%></h3>
+        <li>Q <%=@quiz.question_no%>.  <%=@quiz.question%></li>
+      </div>
     </div>
-  </div>
-  
-  <div class="row">
-    <div class="large-8 large-offset-2 columns blue-box">
-    <%= form_tag(hunt_quiz_path, :method => :get ) do%>
-        <%= label :address, "Address" %>
-        <%= text_field :address, :address %>
-
-
-        <%= submit_tag("Answer") %>
-     <% end %>
     
-    <li><%= link_to 'next', hunt_quiz_path(@hunt, @quiz.next) if @flm == 1 %></li>
-   
-   </div>
-    </div>
+    <div class="row">
+      <div class="large-8 large-offset-2 columns blue-box">
+      <%= form_tag(hunt_quiz_path, :method => :get ) do%>
+          <%= label :address, "Address" %>
+          <%= text_field :address, :address %>
 
 
-     <section class="signinwhite">
+          <%= submit_tag("Answer") %>
+       <% end %>
+        <section class="signinwhite">
       <div class="row">
     <div class="large-6 large-offset-3 columns blue-box">
         <li><%= link_to "CLUE", hunt_quiz_path%></li>
        
        
 
-        <li style="color:black"><%=@characters%></li>
+        <li style="color:black"><%=@quiz.get_clue.html_safe%></li>
       </div>
    </div>
   
   </section>
+  <%else%>
+     <div class="row">
+      <div class="large-8 large-offset-2 columns blue-box">
+    <li> You got it, move on </li> 
+    <li><%= link_to 'Next', hunt_quiz_path(@hunt, @quiz.next) %></li>
+    </div>
+     </div>
+    <%end%>
+   
+   </div>
+    </div>
+
+
+    
    
       
  </body>

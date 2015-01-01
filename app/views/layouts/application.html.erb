@@ -21,7 +21,7 @@
             <div class="main-wrapper">
               <div class="button-group">  
                <% if user_signed_in? != false %>
-                  <li class="secondary small button"><%= current_user.email%></li>  
+                  <li class="secondary small button"><%= current_user.name%></li>  
 
                   <li class="secondary small button"><%= link_to "Sign out", destroy_user_session_path, method: "DELETE"%></li> 
                 <%end%>
