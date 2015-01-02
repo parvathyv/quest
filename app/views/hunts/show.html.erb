@@ -23,7 +23,7 @@
               <li><%=quiz.question_no%>.  <%=quiz.question.capitalize%></li>
           <%end%>
           <br>
-          <% if @quizzes != nil%>
+          <% if @quizzes.empty? == false %>
           <% if (5 - @quizzes.maximum(:question_no)) != 0 %>
                 <li> You have <%= 5 - @quizzes.maximum(:question_no)%> questions left to complete <%=@hunt.name%> </li>
                  <li><%=link_to "Add a question", new_hunt_quiz_path(@hunt)%></li>
@@ -34,11 +34,13 @@
                   <li>Where to next ?</li>
                 <li><%=link_to "New hunt", new_location_path%></li>
           <%end%>
+          <%else%>
+            <li><%=link_to "Add a question", new_hunt_quiz_path(@hunt)%></li>
           <%end%>
-
+           
          
     
-          <li><%=link_to "Edit hunt", edit_hunt_path%></li> 
+          <li><%=link_to "Edit hunt name", edit_hunt_path%></li> 
           <li><%=link_to "Delete hunt", hunt_path, method:"delete" %></li>
           <li><%=link_to "All hunts", hunts_path%></li>              
     </div>

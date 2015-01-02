@@ -13,8 +13,10 @@
             <h3>Choose your hunt</h3>
 
               <%@hunts.each do|hunt|%>
-                <li><%= link_to ">>", hunt_quiz_path(hunt, hunt.quizzes.first) %>
-                <%=hunt.name%></li>
+                <%if hunt.quizzes.empty? == false%>
+                  <li><%= link_to ">>", hunt_quiz_path(hunt, hunt.quizzes.first) %></li>
+                <%end%>
+                <li><%=hunt.name%></li>
                 <li><%=link_to "Edit", edit_location_hunt_path(@location, hunt), :class => "editdelete"%></li>
 
                 <li><%=link_to "Delete", location_hunt_path(@location, hunt), method:"delete", :class => "editdelete"%>

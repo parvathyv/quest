@@ -10,4 +10,20 @@ setInterval(function() {
     .appendTo('#slideshow');
 },  2000);
 
+
+
+$('.clue1.small.button').click(function(){
+    $('#clue1').toggle();
+});
+
+$('.clue2.small.button').click(function(){
+    $('#clue2').toggle();
+});
+
+$('.clue3.small.button').click(function(){
+    $('#clue3').toggle();
+});
+
+
+
 });

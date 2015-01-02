@@ -12,11 +12,12 @@ class HuntsController < ApplicationController
     @hunt = Hunt.find(params[:id])
     @quiz = Quiz.new
     @quizzes = @hunt.quizzes.order(question_no: :desc)
+    binding.pry
   end
 
   # GET /hunts/new
   def new
-    binding.pry
+    
     @hunt = Hunt.new
     @location = Location.find(params[:location_id])
     

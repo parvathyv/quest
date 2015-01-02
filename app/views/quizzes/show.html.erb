@@ -6,14 +6,15 @@
 <body>
   <script type="text/javascript">
       var map_array = <%= [@quiz.latitude, @quiz.longitude] %>
-      var my_zoom =  <%= 12 %>
+      var my_zoom =  <%= 14 %>
       var mapcenterlat = <%= @quiz.latitude %>
       var mapcenterlong = <%= @quiz.longitude %>
       var flag = <%= 2 %>
   </script>
 
-
-  <div id="map_canvas" style="height:70%;width:100%"></div>
+ 
+        <div id="map_canvas" style="height:70%;width:100%"></div>
+      
   <% if @flm == 0 %>   
     <div class="row">
       <div class="large-8 large-offset-2 columns blue-box">
@@ -22,29 +23,35 @@
         <li>Q <%=@quiz.question_no%>.  <%=@quiz.question%></li>
       </div>
     </div>
-    
+   <section class="signinwhite">
     <div class="row">
       <div class="large-8 large-offset-2 columns blue-box">
       <%= form_tag(hunt_quiz_path, :method => :get ) do%>
           <%= label :address, "Address" %>
           <%= text_field :address, :address %>
-          <%= submit_tag("Answer") %>
+           <div class="row">
+            <div class="large-4 large-offset-4 columns blue-box">
+              <li><%= submit_tag("Answer",:class => "answer large button") %></li>
+          </div>
+          </div>
        <% end %>
       </div>
     </div>
-        <section class="signinwhite">
-      <div class="row">
-    <div class="large-6 large-offset-3 columns blue-box">
-        <li><%= link_to "CLUE", hunt_quiz_path%></li>
-       
-       
-        <%@quiz.get_clue.each do|clue|%>
-          <li style="color:black"><%=clue.html_safe%></li>
-        <%end%>  
-      </div>
-   </div>
+   
+
   
-  </section>
+  <div class="row">
+    <div class="large-12 columns blue-box">
+      <%= button_tag "CLUE", :class => "clue1 small button", :type => "button" %>
+      <li id ="clue1" style="color:white"><%=@quiz.get_clue[0].html_safe%></li><br>
+      <%= button_tag "CLUE", :class => "clue2 small button", :type => "button" %>
+      <li id ="clue2" style="color:white"><%=@quiz.get_clue[1].html_safe%></li><br>
+      <%= button_tag "CLUE", :class => "clue3 small button", :type => "button" %>
+      <li id ="clue3" style="color:white"><%=@quiz.get_clue[2].html_safe%></li>
+    </div>
+  </div>
+  
+ 
   <%else%>
      <div class="row">
       <div class="large-8 large-offset-2 columns blue-box">
@@ -53,10 +60,10 @@
     </div>
      </div>
     <%end%>
+ </section>
+   
 
-
-
-    
+  
    
       
  </body>
