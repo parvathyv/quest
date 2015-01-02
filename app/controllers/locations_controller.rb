@@ -4,6 +4,7 @@ class LocationsController < ApplicationController
 
   # GET /questions
   def index
+
     @locations = Location.all
     @location_array = []
   
@@ -20,7 +21,7 @@ class LocationsController < ApplicationController
 
   # GET /questions/1
   def show
- 
+     
     @location = Location.find(params[:id])
     #@hunt= Hunt.new
     @hunts = @location.hunts

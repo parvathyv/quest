@@ -42,11 +42,11 @@
   
   <div class="row">
     <div class="large-12 columns blue-box">
-      <%= button_tag "CLUE", :class => "clue1 small button", :type => "button" %>
-      <li id ="clue1" style="color:white"><%=@quiz.get_clue[0].html_safe%></li><br>
-      <%= button_tag "CLUE", :class => "clue2 small button", :type => "button" %>
-      <li id ="clue2" style="color:white"><%=@quiz.get_clue[1].html_safe%></li><br>
-      <%= button_tag "CLUE", :class => "clue3 small button", :type => "button" %>
+      <%= button_tag "CLUE 1", :class => "clue1 small button", :type => "button" %>
+      <li id ="clue1" style="color:white"><%=@quiz.get_clue[0].html_safe%></li>
+      <%= button_tag "CLUE 2", :class => "clue2 small button", :type => "button" %>
+      <li id ="clue2" style="color:white"><%=@quiz.get_clue[1].html_safe%></li>
+      <%= button_tag "CLUE 3", :class => "clue3 small button", :type => "button" %>
       <li id ="clue3" style="color:white"><%=@quiz.get_clue[2].html_safe%></li>
     </div>
   </div>

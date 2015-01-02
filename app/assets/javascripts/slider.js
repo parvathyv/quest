@@ -13,15 +13,15 @@ setInterval(function() {
 
 
 $('.clue1.small.button').click(function(){
-    $('#clue1').toggle();
+    $('#clue1').toggle("slow");
 });
 
 $('.clue2.small.button').click(function(){
-    $('#clue2').toggle();
+    $('#clue2').toggle("slow");
 });
 
 $('.clue3.small.button').click(function(){
-    $('#clue3').toggle();
+    $('#clue3').toggle("slow");
 });
 
 

@@ -14,6 +14,7 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1
   def show
+    binding.pry
     @hunt = Hunt.find(params[:hunt_id])
     @quiz = Quiz.find(params[:id])
     

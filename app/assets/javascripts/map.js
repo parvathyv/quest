@@ -160,22 +160,18 @@
     });
   }
 
-
-function placeMarker(position, map) {
-  var marker = new google.maps.Marker({
-    position: position,
-    map: map
-  });
-  
 }
+
+
+
 
  
   google.maps.event.addListener(map, 'click', function(e) {
     
-     document.getElementById('answer').value = e.latLng.lat() + ', ' + e.latLng.lng();
+     //document.getElementById('answer').value = e.latLng.lat() + ', ' + e.latLng.lng();
      placeMarker(e.latLng, map);
       $.ajax({
-      url: '/quizzes',
+      url: '/hunts/1/quizzes/3',
       method: 'get',
       data: {
         lat: e.latLng.lat(),
@@ -184,6 +180,13 @@ function placeMarker(position, map) {
     });
 
   });
+
+  function placeMarker(position, map) {
+  var marker = new google.maps.Marker({
+    position: position,
+    map: map
+  });
+  
 }
 
 
