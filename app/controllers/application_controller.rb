@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << [:first_name, :last_name]
+    devise_parameter_sanitizer.for(:sign_up) << [:name, :email]
   end
 
   protect_from_forgery with: :exception

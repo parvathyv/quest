@@ -35,23 +35,37 @@ class LocationsController < ApplicationController
   end
 
   def redirect_new_hunt
-      binding.pry
+  
      redirect_to new_location_hunt_path(params[:location][:id])
   end  
   # POST /questions
   def create
-   binding.pry
-    if params[:location][:id] == nil
+    address = params[:location][:address]
+    id = params[:location][:id]
+    flag = true
+    if address == '' or address == nil
+      flag = false
+    else
+      @checklocation = Location.where("address=?", address)
+      if @checklocation.empty? == false
+        flag = false
+      end
+    end    
+    
+    binding.pry
+
+    if flag == true 
       @location= Location.new(location_params)
     
       @locations = Location.all
-      
+    
       if @location.save
         redirect_to @location, notice: 'Location was successfully created.'
       else
         render action: 'new'
       end
     else
+        
       redirect_new_hunt
     end  
   end
