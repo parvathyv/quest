@@ -6,27 +6,28 @@
 <body>
   <h1>Quiz</h1>
   <h3><%=@hunt.name%></h3>
-  
-  <%= form_for([@hunt, @quiz]) do |f| %>
 
-        <% if @quiz.errors.any? %>
-          <ul>
-            <% @quiz.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        <% end %><br>
-      <div class="row">
-        <div class="large-8 columns">
-          <%= f.label :question %><br>
-          <%= f.text_field :question%><br>
-          <%= f.label :address %><br>
-          <%= f.text_field :address%><br>
-          <%= f.submit "Create" %>
-        </div>  
+  <%= form_for([@hunt, @quiz]) do |f| %>
+    <ul>
+      <% if @quiz.errors.any? %>
+        <% @quiz.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      <% end %><br>
+    </ul>
+
+    <div class="row">
+      <div class="large-8 columns">
+        <%= f.label :question %><br>
+        <%= f.text_field :question%><br>
+        <%= f.label :address %><br>
+        <%= f.text_field :address%><br>
+        <%= f.submit "Create" %>
       </div>
-      <p><%=link_to "See hunt details", hunt_path(@hunt)%></p>
- <% end %> 
+    </div>
+
+    <p><%=link_to "See hunt details", hunt_path(@hunt)%></p>
+  <% end %>
 
 </body>
 </html>

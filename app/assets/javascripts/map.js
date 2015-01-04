@@ -1,6 +1,6 @@
  function initialize() {
 
-  
+
   var styles = [
     {
         "featureType": "landscape",
@@ -123,14 +123,14 @@
   }
 
   var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-  
+
   var icon = 'http://localhost:3000/assets/search.png';
 
   map.mapTypes.set('map_style', styledMap);
   map.setMapTypeId('map_style');
 
   if (flag === 1) {
-   for (var i = 0; i < map_array.length; i++){ 
+   for (var i = 0; i < map_array.length; i++){
       var location = new google.maps.LatLng(map_array[i][0], map_array[i][1]);
       var marker = new google.maps.Marker({
         position: location,
@@ -138,8 +138,8 @@
         icon: icon
 
       });
-       
-  
+
+
     var j = i + 1;
     var j = 1
     marker.setTitle(j.toString());
@@ -147,7 +147,7 @@
 
     }
 
-    
+
     function createinfoWindow(marker, contentString){
 
     var infowindow = new google.maps.InfoWindow({
@@ -162,22 +162,18 @@
 
 }
 
-
-
-
- 
   google.maps.event.addListener(map, 'click', function(e) {
-    
-     //document.getElementById('answer').value = e.latLng.lat() + ', ' + e.latLng.lng();
+
+     document.getElementsByClassName("address")[0].value = e.latLng.lat() + ', ' + e.latLng.lng();
      placeMarker(e.latLng, map);
-      $.ajax({
-      url: '/hunts/1/quizzes/3',
+     /*$.ajax({
+      url: '/hunts/' + hunt_id + '/quizzes/' + quiz_id,
       method: 'get',
       data: {
         lat: e.latLng.lat(),
         lng: e.latLng.lng()
       }
-    });
+    });*/
 
   });
 
@@ -186,7 +182,7 @@
     position: position,
     map: map
   });
-  
+
 }
 
 
@@ -194,5 +190,5 @@
 
 $(document).on('ready', function(){
   google.maps.event.addDomListener(window, 'load', initialize);
- 
+
 });

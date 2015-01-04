@@ -4,94 +4,89 @@ class QuizzesController < ApplicationController
   # GET /quizzes
   def index
     @lat = params[:lat]
-   
+
     @location_zoom = 10
 
-   
+
   end
 
-  
+
 
   # GET /quizzes/1
   def show
-    binding.pry
+
     @hunt = Hunt.find(params[:hunt_id])
     @quiz = Quiz.find(params[:id])
-    
     @flm = 0
+
     if params[:address] != nil
-      if params[:address][:address] == @quiz.address
-       @flm = 1
-      else
-      @flm = 0
-      end  
-    end   
-    
-  
+      @flm = @quiz.is_answer?(params[:address][:address])
+    end
+    binding.pry
   end
 
-  
 
-  
+
+
 
   # GET /quizzes/ne
   def new
-   
+
     @quiz = Quiz.new
     @hunt = Hunt.find(params[:hunt_id])
-   
+
   end
 
   # POST /quizzes
   def create
 
-   
+
     @hunt = Hunt.find(params[:hunt_id])
-    
+
     @quiz = @hunt.quizzes.build(quiz_params)
     @last_quiz = Quiz.where("hunt_id=?", @hunt.id)
-      
+
     if @last_quiz == nil || @last_quiz.empty?
       @quiz.question_no = 1
-    else  
+    else
       @quiz.question_no = @last_quiz.last.question_no + 1
-    end  
-  
+    end
+
     if @quiz.save
-      
+
       if @quiz.question_no < 5
         redirect_to new_hunt_quiz_path(@hunt), notice: 'Quiz was successfully created.'
       else
-        redirect_to hunt_path(@hunt), notice: 'Quiz was successfully created.' 
-      end   
+        redirect_to hunt_path(@hunt), notice: 'Quiz was successfully created.'
+      end
     else
         redirect_to hunt_path(@hunt), notice: 'Quiz was not created.'
-    end  
-      
+    end
+
   end
 
-  
+
   def destroy
     @quiz = Quiz.find(params[:id]).destroy
     redirect_to @quiz, notice: 'Quiz was successfully deleted'
-  end  
+  end
 
-  
+
   def edit
       binding.pry
      @quiz = Quiz.find(params[:id])
-    
+
   end
 
   def update
-   
+
     @hunt = Hunt.find(params[:question_id])
     @quiz = Quiz.update(quiz_params)
     #@quiz = @hunt.quiz.update(answer_params)
     redirect_to @hunt, notice: 'Quiz was successfully updated'
-  end 
+  end
 
- 
+
 
   #private
 
