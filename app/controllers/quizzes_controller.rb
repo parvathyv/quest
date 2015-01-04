@@ -3,31 +3,36 @@ class QuizzesController < ApplicationController
   before_filter :user_signed_in?, :only => [:edit, :update, :destroy]
   # GET /quizzes
   def index
-    @lat = params[:lat]
-
-    @location_zoom = 10
-
 
   end
-
-
 
   # GET /quizzes/1
   def show
-
     @hunt = Hunt.find(params[:hunt_id])
     @quiz = Quiz.find(params[:id])
     @flm = 0
+    @msg = "Let's go..."
+
 
     if params[:address] != nil
       @flm = @quiz.is_answer?(params[:address][:address])
+
+      if @flm == 0
+
+        if @quiz.get_nonmatch == 'dist'
+
+          dist = @quiz.get_distance(params[:address][:address]).round(1)
+          @msg = " Sorry, you are about #{dist} miles off, try again"
+        else
+           @msg = "Sorry, try again"
+        end
+      else
+         @msg = "Great job, #{5 - @quiz.question_no} questions to go "
+      end
+
     end
-    binding.pry
+
   end
-
-
-
-
 
   # GET /quizzes/ne
   def new
@@ -39,8 +44,6 @@ class QuizzesController < ApplicationController
 
   # POST /quizzes
   def create
-
-
     @hunt = Hunt.find(params[:hunt_id])
 
     @quiz = @hunt.quizzes.build(quiz_params)

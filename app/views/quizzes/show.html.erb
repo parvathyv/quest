@@ -19,9 +19,11 @@
 
   <% if @flm == 0 %>
 
+
     <div class="row">
       <div class="large-8 large-offset-2 columns blue-box">
         <h3>Experience <%=@hunt.name%></h3>
+         <li> <%=@msg%></li>
         <li>Q <%=@quiz.question_no%>.  <%=@quiz.question%></li>
       </div>
     </div>
@@ -58,7 +60,7 @@
 
     <div class="row">
       <div class="large-8 large-offset-2 columns blue-box">
-        <li> You got it, move on </li>
+        <li> <%=@msg%></li>
         <% if @quiz.next %>
           <li><%= link_to 'Next', hunt_quiz_path(@hunt, @quiz.next) %></li>
         <%end%>
