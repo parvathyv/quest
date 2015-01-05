@@ -1,7 +1,7 @@
-$(document).ready(function() { 
-   
+$(document).ready(function() {
+
 $('#slideshow > div:gt(0)').hide();
-setInterval(function() { 
+setInterval(function() {
   $('#slideshow > div:first')
     .fadeOut(1000)
     .next()
@@ -24,6 +24,11 @@ $('.clue3.small.button').click(function(){
     $('#clue3').toggle("slow");
 });
 
+
+ $("#cl").on("click", function() {
+
+     $(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
+  });
 
 
 });

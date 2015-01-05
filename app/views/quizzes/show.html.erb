@@ -5,8 +5,8 @@
 </head>
 <body>
   <script type="text/javascript">
-    var map_array = <%= [@quiz.latitude, @quiz.longitude] %>
-    var my_zoom =  <%= 14 %>
+    var map_array = <%= [@quiz.latitude + 0.5, @quiz.longitude + 0.5] %>
+    var my_zoom =  <%= 10 %>
     var mapcenterlat = <%= @quiz.latitude %>
     var mapcenterlong = <%= @quiz.longitude %>
     var flag = <%= 2 %>

@@ -4,7 +4,7 @@ class HuntsController < ApplicationController
   # GET /hunts
   def index
     @hunts = Hunt.all
-    
+
   end
 
   # GET /hunts/1
@@ -12,62 +12,62 @@ class HuntsController < ApplicationController
     @hunt = Hunt.find(params[:id])
     @quiz = Quiz.new
     @quizzes = @hunt.quizzes.order(question_no: :desc)
-    binding.pry
+
   end
 
   # GET /hunts/new
   def new
-    
+
     @hunt = Hunt.new
     @location = Location.find(params[:location_id])
-    
+
   end
 
   # POST /hunts
   def create
-    
+
     @location = Location.find(params[:location_id])
 
     @hunt = @location.hunts.build(hunt_params)
- 
+
     @hunt.user = current_user
-   
+
     if @hunt.save
       redirect_to new_hunt_quiz_path(@hunt), notice: 'Hunt was successfully created.'
     else
-       
+
       redirect_to new_location_hunt_path(@location), notice: 'Hunt was not created.'
     end
   end
 
-  
+
   def destroy
     @hunt = Hunt.find(params[:id]).destroy
     @quiz = @hunt.quizzes.destroy
     binding.pry
     redirect_to hunts_path, notice: 'Hunt was successfully deleted'
-  end  
+  end
 
-  
+
   def edit
-  
+
      @hunt = Hunt.find(params[:id])
-    
+
   end
 
   def update
     @hunt = Hunt.find(params[:id])
-  
+
     @hunt.update(hunt_params)
-  
+
     if @hunt.save
       redirect_to @hunt, notice: 'Hunt was successfully updated.'
     else
       render action: 'edit'
     end
-  end 
+  end
 
- 
+
 
 
   #private

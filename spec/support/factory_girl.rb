@@ -5,21 +5,19 @@ FactoryGirl.define do
     sequence(:email) { |n| "#{n}geneparm@privateeyes.com"}
     password "supersecret"
     password_confirmation 'supersecret'
-  end 
+  end
 
   factory :location do
     sequence(:address) { |n| "#{n}Seattle, WA"}
   end
 
- factory :hunt do
+  factory :hunt do
     sequence(:name) { |n| "#{n}nnn"}
     description "Discover SanFran on a foggy day"
-   
+
     user
     location
-   
-   
-  end 
+  end
 
-  
+
 end

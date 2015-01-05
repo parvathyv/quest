@@ -23,13 +23,13 @@ class Quiz < ActiveRecord::Base
     if address.split(',').first.to_f != 0
       dist = self.get_distance(address)
 
-      if dist < 0.5
+      if dist < 0.2
         flag = 1
       else
         @nonmatch = 'dist'
       end
     else
-      if address == self.address
+      if self.address.include? address
         flag = 1
       else
         @nonmatch = 'address'

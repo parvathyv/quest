@@ -27,7 +27,8 @@ class QuizzesController < ApplicationController
            @msg = "Sorry, try again"
         end
       else
-         @msg = "Great job, #{5 - @quiz.question_no} questions to go "
+         @msg = "Great job on guessing #{@quiz.address.split(',').first}.
+         #{5 - @quiz.question_no} questions to go "
       end
 
     end
